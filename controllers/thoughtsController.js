@@ -13,7 +13,7 @@ const thoughtController = {
         res.status(500).json(error);
       });
   },
-  getSingleThoughts(req, res) {
+  getSingleThought(req, res) {
     // Get thought by id
     Thought.findOne({ _id: req.params.Id })
       .then((thoughtData) => {
