@@ -1,28 +1,35 @@
 const { Schema, model } = require("mongoose");
 
+
 // Schema to create user model
 const userSchema = new Schema(
     {
       name: {
         type: String,
         required: true,
+        trim: true
       },
       
       email: {
         type: String,
         required: true,
-
+        // Match regex
+        match: [/.+@.+\..+/, "Must match a valid email address"],
       },
 
-      thoughts: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Thought'
-      }],
+      thoughts: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Thought',
+        }
+      ],
 
-      friends: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-      }],
+      friends: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'User',
+        }
+      ],
     },
 
     {
@@ -33,8 +40,10 @@ const userSchema = new Schema(
     }
   );
   
-  userSchema.virtual('friendCount').get(function(){
+  userSchema.virtual('friendCount').get(function() {
+
     return this.friends.length
+
   })
 
   const User = model('User', userSchema);

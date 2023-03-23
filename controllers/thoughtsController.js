@@ -44,7 +44,7 @@ const thoughtController = {
         if(!userData) {
           return res.status(404).json();
         }
-        return res.json(thoughtData)
+        return res.json()
       })
 
       .catch((error) => {
