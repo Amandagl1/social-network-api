@@ -7,14 +7,17 @@ const reactionSchema = new Schema(
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
     },
+
     reactionContent: {
       type: String,
       required: true,
     },
+
     username: {
       type: String,
       required: true
     },
+
     createdAt: {
       type: Date,
       default: Date.now,
@@ -22,6 +25,7 @@ const reactionSchema = new Schema(
         moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
     }
   },
+  
   {
     toJSON: {
       getters: true

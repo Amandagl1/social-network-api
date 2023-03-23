@@ -1,7 +1,8 @@
 const { User, Thought } = require("../models");
 
 const thoughtController = {
-  getThoughts(req, res) {
+
+  getAllThoughts(req, res) {
     // Get all thoughts
     Thought.find()
       // Sort by the most recently created post first to the earliest post
@@ -13,6 +14,7 @@ const thoughtController = {
         res.status(500).json(error);
       });
   },
+
   getSingleThought(req, res) {
     // Get thought by id
     Thought.findOne({ _id: req.params.Id })
@@ -29,6 +31,7 @@ const thoughtController = {
         res.status(500).json(error);
       });
   },
+
   createThought(req, res) {
     Thought.create(req.body).then((thoughtData) => {
       // Find id and push new thought
@@ -49,6 +52,7 @@ const thoughtController = {
         res.status(500).json(error);
       });
   },
+
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -66,6 +70,8 @@ const thoughtController = {
         res.status(500).json(error);
       });
   },
+
+  // Get one thought by id and 
   deleteThought(req, res) {
     Thought.findOneAndRemove({ _id: req.params.thoughtId })
     .then((thoughtData) => {
@@ -79,12 +85,14 @@ const thoughtController = {
         { new: true }
       );
     })
+
     .then((UserData) => {
       if (!UserData) {
         return res.status(404).json();
       }
       res.json();
     })
+
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);

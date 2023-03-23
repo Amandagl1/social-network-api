@@ -9,14 +9,17 @@ const userController = {
           .select("-__v")
           .sort({ _id: -1 })
           .then((userData) => { res.json(userData) })
+          
           // If error, return 500 error status
           .catch((error) => {
             console.log(error);
             res.status(500).json(error);
           });
       },
+
+      // Get one user by id
       getSingleUser(req, res) {
-        // Get thought by id
+
         User.findOne({ _id: req.params.Id })
           .populate("thoughts")
           .then((userData) => {
@@ -32,6 +35,8 @@ const userController = {
             res.status(500).json(error);
           });
       },
+
+      // Create user
       createUser(req, res) {
         User.create(req.body).then((userData) => {
             res.json(userData);
@@ -42,6 +47,8 @@ const userController = {
             res.status(500).json(error);
           });
       },
+
+      // Find a user by id and update
       updateUser(req, res) {
         User.findOneAndUpdate(
           { _id: req.params.userId },
@@ -59,6 +66,8 @@ const userController = {
             res.status(500).json(error);
           });
       },
+
+      // Delete a user by id
       deleteUser(req, res) {
         User.findOneAndDelete({ _id: req.params.userId })
         .then((userData) => {
