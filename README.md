@@ -1,6 +1,8 @@
 # Social Network API
 ![ICS](https://img.shields.io/badge/license-ICS-orange)
 
+Walkthrough video demonstration: [Social Network API](assets/social-network-api.webm)
+
 ## Table of Contents
 - [License](#license)
 - [User Story](#user-story)
