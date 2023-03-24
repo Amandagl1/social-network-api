@@ -21,7 +21,7 @@ const thoughtController = {
       .then((thoughtData) => {
         // If no data, return 404 status error
         if (!thoughtData) {
-          return res.status(404).json();
+          return res.status(404).json({message: "No thought with this id."});
         }
         res.json(thoughtData);
       })
@@ -44,7 +44,7 @@ const thoughtController = {
         if(!userData) {
           return res.status(404).json();
         }
-        return res.json()
+        return res.json(userData)
       })
 
       .catch((error) => {
@@ -61,7 +61,7 @@ const thoughtController = {
       { runValidators: true, new: true })
       .then((thoughtData) => {
         if (!thoughtData) {
-          return res.status(404).json();
+          return res.status(404).json({ message: 'No thought with this id.' });
         } 
         res.json(thoughtData)
       })
@@ -90,7 +90,7 @@ const thoughtController = {
       if (!UserData) {
         return res.status(404).json();
       }
-      res.json();
+      res.json({message: 'Thought successfully deleted.'});
     })
 
     .catch((err) => {

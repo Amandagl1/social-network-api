@@ -25,7 +25,7 @@ const userController = {
       .populate('thoughts')
       .populate('friends')
       .select('-__v')
-      
+
       .then((userData) => {
         // If no data, return 404 status error
         if (!userData) {
@@ -80,7 +80,7 @@ const userController = {
         }
       })
       .then(() => {
-        res.json();
+        res.json({message: 'User successfully deleted.'});
       })
       .catch((err) => {
         console.log(err);
